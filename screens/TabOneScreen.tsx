@@ -1,24 +1,26 @@
+import { useEffect, useState } from "react";
 import { StyleSheet } from "react-native";
 
-import EditScreenInfo from "../components/EditScreenInfo";
 import { Text, View } from "../components/Themed";
 import { RootTabScreenProps } from "../types";
 
-export default function TabOneScreen({
-  navigation,
-}: RootTabScreenProps<"TabOne">) {
+import CryptoList from "./CryptoList";
+
+const TabOneScreen = ({ navigation }: RootTabScreenProps<"TabOne">) => {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Tab One</Text>
+      <Text style={styles.title}>CryptoGecko</Text>
+      <Text style={styles.subtitle}>Powered by CoinGecko</Text>
       <View
         style={styles.separator}
         lightColor="#eee"
         darkColor="rgba(255,255,255,0.1)"
       />
-      <EditScreenInfo path="/screens/TabOneScreen.tsx" />
+
+      <CryptoList />
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -30,9 +32,14 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: "bold",
   },
+  subtitle: {
+    fontSize: 12,
+  },
   separator: {
     marginVertical: 30,
     height: 1,
     width: "80%",
   },
 });
+
+export default TabOneScreen;
