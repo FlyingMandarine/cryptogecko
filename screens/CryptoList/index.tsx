@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { FlatList, ListRenderItem, StyleSheet, Text, View } from "react-native";
+import { Button, Card, Searchbar } from "react-native-paper";
 
 import { CryptoData } from "../../types";
 import PageSelection from "./PageSelection";
@@ -7,7 +8,9 @@ import PageSelection from "./PageSelection";
 const styles = StyleSheet.create({
   separator: {
     marginVertical: 10,
-    backgroundColor: 'grey',
+    borderColor: "blue",
+    borderStyle: "solid",
+    borderWidth: 5
   },
 });
 
@@ -16,6 +19,10 @@ const CryptoList = () => {
 
   const [partialData, setPartialData] = useState<CryptoData[] | undefined>();
   const [pageCount, setPageCount] = useState(0);
+
+  const [searchQuery, setSearchQuery] = useState('');
+
+  const onChangeSearch = (query: string) => setSearchQuery(query);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -37,17 +44,31 @@ const CryptoList = () => {
     setPartialData(newPageData)
   }, [pageCount]);
 
+  useEffect(() => {
+    // Not practical to have both search types mixed up; find a way to separate them both.
+
+    // Don't forget to add debouncing
+    if (cryptoData) {
+      const newNameData: CryptoData[] = cryptoData.filter(entry => entry.name.includes(searchQuery));
+      const newSymbolData: CryptoData[] = cryptoData.filter(entry => entry.symbol.includes(searchQuery));
+      const newData: CryptoData[] = newNameData.concat(newSymbolData);
+      setPartialData(newData);
+    }
+  }, [searchQuery]);
+
   if (!partialData) {
     return (
-      <Text>Loading...</Text>
+      <Button loading>Loading...</Button>
     );
   }
 
   const renderItem: ListRenderItem<CryptoData> = ({ item }) => (
-    <View key={item.id}>
-      <Text>Name is: {item.name}</Text>
-      <Text>Symbol is: {item.symbol}</Text>
-    </View>
+    <Card key={item.id}>
+      <Card.Title title={item.name} />
+      <Card.Content>
+        <Text>Symbol is: {item.symbol}</Text>
+      </Card.Content>
+    </Card>
   );
 
   const ItemSeparator = () => <View style={styles.separator} />;
@@ -75,6 +96,12 @@ const CryptoList = () => {
 
   return (
     <View>
+      <Searchbar
+        autoComplete={''}
+        placeholder="Search"
+        onChangeText={onChangeSearch}
+        value={searchQuery}
+      />
       <FlatList
         data={partialData}
         renderItem={renderItem}

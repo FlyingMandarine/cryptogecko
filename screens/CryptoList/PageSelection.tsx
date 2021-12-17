@@ -1,10 +1,11 @@
 import React from "react";
 import { View, Pressable, StyleSheet, Text } from "react-native";
+import { Button } from "react-native-paper";
 
 const styles = StyleSheet.create({
   nextPageStyle: {
     flexDirection: "row",
-    justifyContent: "space-around",
+    justifyContent: "space-evenly",
     marginBottom: 50,
   },
 });
@@ -12,11 +13,11 @@ const styles = StyleSheet.create({
 const PageSelection = ({ pageCount, triggerPageChange }: { pageCount: number, triggerPageChange: Function }) => {
   return (
     <View style={styles.nextPageStyle}>
-      <Pressable onPress={() => triggerPageChange('first')}><Text>First</Text></Pressable>
-      <Pressable onPress={() => triggerPageChange('previous')}><Text>Previous</Text></Pressable>
-      <Text>{pageCount + 1}</Text>
-      <Pressable onPress={() => triggerPageChange('next')}><Text>Next</Text></Pressable>
-      <Pressable onPress={() => triggerPageChange('last')}><Text>Last</Text></Pressable>
+      <Button mode="contained" onPress={() => triggerPageChange('first')}><Text>First</Text></Button>
+      <Button mode="contained" onPress={() => triggerPageChange('previous')}><Text>Previous</Text></Button>
+      <Button mode="contained" disabled>{pageCount + 1}</Button>
+      <Button mode="contained" onPress={() => triggerPageChange('next')}><Text>Next</Text></Button>
+      <Button mode="contained" onPress={() => triggerPageChange('last')}><Text>Last</Text></Button>
     </View>
   );
 };
