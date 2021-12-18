@@ -10,14 +10,60 @@ const styles = StyleSheet.create({
   },
 });
 
-const PageSelection = ({ pageCount, triggerPageChange }: { pageCount: number, triggerPageChange: Function }) => {
+const PageSelection = ({
+  pageCount,
+  triggerPageChange,
+  lastPage
+}: {
+  pageCount: number;
+  triggerPageChange: Function;
+  lastPage: number | undefined;
+}) => {
   return (
     <View style={styles.nextPageStyle}>
-      <Button mode="contained" onPress={() => triggerPageChange('first')}><Text>First</Text></Button>
-      <Button mode="contained" onPress={() => triggerPageChange('previous')}><Text>Previous</Text></Button>
-      <Button mode="contained" disabled>{pageCount + 1}</Button>
-      <Button mode="contained" onPress={() => triggerPageChange('next')}><Text>Next</Text></Button>
-      <Button mode="contained" onPress={() => triggerPageChange('last')}><Text>Last</Text></Button>
+      {
+        pageCount < 1 ?
+          <>
+            <Button mode="contained" disabled>
+              <Text>First</Text>
+            </Button>
+            <Button mode="contained" disabled>
+              <Text>Previous</Text>
+            </Button>
+          </>:
+          <>
+            <Button mode="contained" onPress={() => triggerPageChange("first")}>
+              <Text>First</Text>
+            </Button>
+            <Button mode="contained" onPress={() => triggerPageChange("previous")}>
+              <Text>Previous</Text>
+            </Button>
+          </>
+      }
+
+      <Button mode="contained" disabled>
+        {pageCount + 1}
+      </Button>
+
+      {
+        pageCount === lastPage ?
+          <>
+            <Button mode="contained" disabled>
+              <Text>Next</Text>
+            </Button>
+            <Button mode="contained" disabled>
+              <Text>Last</Text>
+            </Button>
+          </>:
+          <>
+            <Button mode="contained" onPress={() => triggerPageChange("next")}>
+              <Text>Next</Text>
+            </Button>
+            <Button mode="contained" onPress={() => triggerPageChange("last")}>
+              <Text>Last</Text>
+            </Button>
+          </>
+      }
     </View>
   );
 };

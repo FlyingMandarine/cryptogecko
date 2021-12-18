@@ -16,17 +16,11 @@ declare global {
   }
 }
 
-
-
 export interface CryptoData {
-    id: string;
-    name: string;
-    symbol: string;
+  id: string;
+  name: string;
+  symbol: string;
 }
-
-
-
-
 
 export type RootStackParamList = {
   Root: NavigatorScreenParams<RootTabParamList> | undefined;
