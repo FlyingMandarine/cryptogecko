@@ -6,13 +6,15 @@ const useSelectedData = (
   isSwitchOn: Boolean,
   debouncedSearchQuery: string
 ) => {
-  const [selectedData, setSelectedData] = useState<CryptoData[] | undefined>(cryptoList);
+  const [selectedData, setSelectedData] = useState<CryptoData[] | undefined>(
+    cryptoList
+  );
   const [loading, setLoading] = useState(false);
 
   const sortData = async () => {
     setLoading(true);
 
-    console.log('loading is', loading);
+    console.log("loading is", loading);
 
     if (!cryptoList) {
       return;

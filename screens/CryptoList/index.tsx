@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { FlatList, ListRenderItem, StyleSheet, Text, View } from "react-native";
-import { Button, Card, Searchbar, Switch } from "react-native-paper";
+import { FlatList, Image, ListRenderItem, StyleSheet, Text, View } from "react-native";
+import { Button, Searchbar, Switch } from "react-native-paper";
 import { useDebounce } from "use-debounce";
 
-import { CryptoData } from "../../types";
+import { CryptoData, CryptoDetails } from "../../types";
 import PageSelection from "./PageSelection";
 
 import useCryptoList from "../../hooks/useCryptoList";
 import useSelectedData from "../../hooks/useSelectedData";
+import usePartialDetails from "../../hooks/usePartialDetails";
 
 const styles = StyleSheet.create({
   separator: {
@@ -24,6 +25,25 @@ const styles = StyleSheet.create({
   switch: {
     // backgroundColor: 'blue',
   },
+  cardTop: {
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  cardCover: {
+    width: 50,
+    height: 50,
+    marginHorizontal: 20,
+    backgroundColor: 'white',
+  },
+  cardTitleView: {
+  },
+  cardBottom: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+},
+  bottomContainers: {
+      alignItems: 'center',
+  },
 });
 
 const CryptoList = () => {
@@ -33,10 +53,15 @@ const CryptoList = () => {
   const [pageCount, setPageCount] = useState(0);
   const [isLoading, setIsLoading] = useState<Boolean>(false);
 
-  const { cryptoList } = useCryptoList();
-  const { selectedData, loading } = useSelectedData(cryptoList, isSwitchOn, debouncedSearchQuery);
-
   const [partialData, setPartialData] = useState<CryptoData[] | undefined>();
+
+  const { cryptoList } = useCryptoList();
+  const { selectedData, loading } = useSelectedData(
+    cryptoList,
+    isSwitchOn,
+    debouncedSearchQuery
+  );
+  const { partialDetails } = usePartialDetails(partialData);
 
   const onChangeSearch = (query: string) => setSearchQuery(query);
 
@@ -47,7 +72,7 @@ const CryptoList = () => {
     );
 
     setIsLoading(false);
-    
+
     setPartialData(newPageData);
   }, [cryptoList, pageCount, selectedData]);
 
@@ -59,19 +84,28 @@ const CryptoList = () => {
     return <Button loading>Loading...</Button>;
   }
 
-  const renderItem: ListRenderItem<CryptoData> = ({ item }) => (
-    <Card key={item.id}>
-      <Card.Title title={item.name} />
-      <Card.Content>
-        <Text>Symbol: {item.symbol.toUpperCase()}</Text>
-      </Card.Content>
-    </Card>
+  const renderItem: ListRenderItem<CryptoDetails> = ({ item }) => (
+      <View key={item.id}>
+        <View style={styles.cardTop}>
+          <Image source={{ uri: item.image }} style={styles.cardCover} />
+          <View>
+            <Text>{item.name}</Text>
+            <Text>{item.symbol.toUpperCase()}</Text>
+          </View>
+        </View>
+        <View style={styles.cardBottom}>
+            <View style={styles.bottomContainers}>
+                <Text>Price</Text>
+                <Text>{item.current_price}</Text>
+            </View>
+        </View>
+      </View>
   );
 
   const ItemSeparator = () => <View style={styles.separator} />;
 
   const triggerPageChange: Function = (page: string) => {
-    console.log('Loading...');
+    console.log("Loading...");
     setIsLoading(true);
     const newPage = () => {
       switch (page) {
@@ -118,7 +152,7 @@ const CryptoList = () => {
         <Text>Filter by Symbol</Text>
       </View>
       <FlatList
-        data={partialData}
+        data={partialDetails}
         renderItem={renderItem}
         keyExtractor={(item) => item.id}
         ItemSeparatorComponent={ItemSeparator}
@@ -126,10 +160,7 @@ const CryptoList = () => {
       <PageSelection
         pageCount={pageCount}
         triggerPageChange={triggerPageChange}
-        lastPage={
-          selectedData &&
-          Math.ceil(selectedData.length / 10) - 1
-        }
+        lastPage={selectedData && Math.ceil(selectedData.length / 10) - 1}
       />
     </View>
   );
