@@ -44,9 +44,6 @@ const useSelectedData = (
           .toLowerCase()
           .includes(debouncedSearchQuery.toLowerCase())
       );
-
-      console.log('newData is', newData);
-      
     }
 
     setLoading(false);

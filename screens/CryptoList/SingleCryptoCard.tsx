@@ -25,7 +25,17 @@ const styles = StyleSheet.create({
 });
 
 const SingleCryptoCard = ({ item }: { item: CryptoDetails }) => {
-  const marketCapWithCommas = item.market_cap.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  let formattedMarketCap = '0';
+  let formattedPrice = '0';
+
+  if (item.market_cap !== null) {
+    formattedMarketCap = item.market_cap.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  }
+
+  if (item.current_price !== null) {
+    const roundedPrice: string = (Math.round(item.current_price * 100)/100).toFixed(2);
+    formattedPrice = roundedPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  }
 
   return (
     <View key={item.id}>
@@ -40,11 +50,11 @@ const SingleCryptoCard = ({ item }: { item: CryptoDetails }) => {
       <View style={styles.cardBottom}>
         <View style={styles.bottomContainers}>
           <Text>Price</Text>
-          <Text style={{ fontWeight: "bold" }}>${item.current_price}</Text>
+          <Text style={{ fontWeight: "bold" }}>${formattedPrice}</Text>
         </View>
         <View style={styles.bottomContainers}>
           <Text>Market cap</Text>
-          <Text style={{ fontWeight: "bold" }}>${marketCapWithCommas}</Text>
+          <Text style={{ fontWeight: "bold" }}>${formattedMarketCap}</Text>
         </View>
       </View>
 
@@ -108,7 +118,6 @@ const SingleCryptoCard = ({ item }: { item: CryptoDetails }) => {
           </Text>
         </View>
       </View>
-
     </View>
   );
 };
