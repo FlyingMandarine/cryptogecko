@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { CryptoData } from "../types";
+import { CryptoData } from "../cryptoTypes";
 
 const useSelectedData = (
   cryptoList: CryptoData[] | undefined,
@@ -13,8 +13,6 @@ const useSelectedData = (
 
   const sortData = async () => {
     setLoading(true);
-
-    console.log("loading is", loading);
 
     if (!cryptoList) {
       return;
@@ -46,6 +44,9 @@ const useSelectedData = (
           .toLowerCase()
           .includes(debouncedSearchQuery.toLowerCase())
       );
+
+      console.log('newData is', newData);
+      
     }
 
     setLoading(false);

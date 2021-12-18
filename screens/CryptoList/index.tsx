@@ -1,19 +1,20 @@
 import React, { useEffect, useState } from "react";
-import { FlatList, Image, ListRenderItem, StyleSheet, Text, View } from "react-native";
+import { FlatList, ListRenderItem, StyleSheet, Text, View } from "react-native";
 import { Button, Searchbar, Switch } from "react-native-paper";
 import { useDebounce } from "use-debounce";
 
-import { CryptoData, CryptoDetails } from "../../types";
+import { CryptoData, CryptoDetails } from "../../cryptoTypes";
 import PageSelection from "./PageSelection";
 
 import useCryptoList from "../../hooks/useCryptoList";
 import useSelectedData from "../../hooks/useSelectedData";
 import usePartialDetails from "../../hooks/usePartialDetails";
+import SingleCryptoCard from "./SingleCryptoCard";
 
 const styles = StyleSheet.create({
   separator: {
     marginVertical: 10,
-    borderColor: "blue",
+    borderColor: "#e1e4e8",
     borderStyle: "solid",
     borderWidth: 5,
   },
@@ -23,26 +24,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   switch: {
-    // backgroundColor: 'blue',
-  },
-  cardTop: {
-    flexDirection: "row",
-    alignItems: "center",
-  },
-  cardCover: {
-    width: 50,
-    height: 50,
-    marginHorizontal: 20,
-    backgroundColor: 'white',
-  },
-  cardTitleView: {
-  },
-  cardBottom: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-},
-  bottomContainers: {
-      alignItems: 'center',
+    marginHorizontal: 5,
   },
 });
 
@@ -73,7 +55,9 @@ const CryptoList = () => {
 
     setIsLoading(false);
 
-    setPartialData(newPageData);
+    if (partialData !== newPageData) {
+      setPartialData(newPageData);
+    }
   }, [cryptoList, pageCount, selectedData]);
 
   useEffect(() => {
@@ -84,28 +68,22 @@ const CryptoList = () => {
     return <Button loading>Loading...</Button>;
   }
 
+  // if (partialDetails) {
+  //   console.log(typeof partialDetails[0].market_cap);
+
+  //   console.log('hello is', parseInt( '1000000' ).toLocaleString());
+
+  //   console.log('miteux is', Number(partialDetails[0].market_cap.toLocaleString("fr-FR")));
+  // }
+
   const renderItem: ListRenderItem<CryptoDetails> = ({ item }) => (
-      <View key={item.id}>
-        <View style={styles.cardTop}>
-          <Image source={{ uri: item.image }} style={styles.cardCover} />
-          <View>
-            <Text>{item.name}</Text>
-            <Text>{item.symbol.toUpperCase()}</Text>
-          </View>
-        </View>
-        <View style={styles.cardBottom}>
-            <View style={styles.bottomContainers}>
-                <Text>Price</Text>
-                <Text>{item.current_price}</Text>
-            </View>
-        </View>
-      </View>
+    <SingleCryptoCard item={item} />
   );
 
   const ItemSeparator = () => <View style={styles.separator} />;
 
   const triggerPageChange: Function = (page: string) => {
-    console.log("Loading...");
+    // console.log("Loading...");
     setIsLoading(true);
     const newPage = () => {
       switch (page) {
@@ -142,14 +120,14 @@ const CryptoList = () => {
         value={searchQuery}
       />
       <View style={styles.switchView}>
-        <Text>Filter by Name</Text>
+        <Text>Search by Name</Text>
         <Switch
           value={isSwitchOn}
           onValueChange={onToggleSwitch}
           color="grey"
           style={styles.switch}
         />
-        <Text>Filter by Symbol</Text>
+        <Text>Search by Symbol</Text>
       </View>
       <FlatList
         data={partialDetails}

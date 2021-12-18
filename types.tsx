@@ -16,20 +16,6 @@ declare global {
   }
 }
 
-export interface CryptoData {
-  id: string;
-  name: string;
-  symbol: string;
-}
-
-export interface CryptoDetails {
-  id: string;
-  symbol: string;
-  name: string;
-  image: string;
-  current_price: number;
-}
-
 export type RootStackParamList = {
   Root: NavigatorScreenParams<RootTabParamList> | undefined;
   Modal: undefined;

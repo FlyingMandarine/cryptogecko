@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Pressable, StyleSheet, Text } from "react-native";
+import { View, StyleSheet, Text } from "react-native";
 import { Button } from "react-native-paper";
 
 const styles = StyleSheet.create({
