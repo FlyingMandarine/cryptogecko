@@ -1,13 +1,15 @@
 # CryptoGecko
 
-![CryptoGecko's main page](src/assets/images/CryptoGecko-screenshot.jpeg?raw=true "CryptoGecko")
+<p align="center">
+  <img height="700" src="src/assets/images/CryptoGecko-screenshot.jpeg?raw=true "CryptoGecko"">
+</p>
 
 ## Table of Content
 
-- [What is CryptoGecko](#what-is-strength-gap)
-- [Installing CryptoGecko](#installing-strength-gap)
-- [Running CryptoGecko](#running-strength-gap)
-- [What Worked, and What Didn't](#what-needs-improving)
+- [What is CryptoGecko](#what-is-cryptogecko)
+- [Installing CryptoGecko](#installing-cryptogecko)
+- [Running CryptoGecko](#running-cryptogecko)
+- [What Worked, and What Didn't](#what-worked-and-what-didn't)
 - [Contributions](#contributions)
 - [License](#license)
 
