@@ -14,7 +14,7 @@ import ErrorMessage from "../ErrorMessage";
 const CryptoList = () => {
   const [isSwitchOn, setIsSwitchOn] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
-  const [debouncedSearchQuery] = useDebounce(searchQuery, 1000);
+  const [debouncedSearchQuery] = useDebounce(searchQuery.trim(), 500);
   const [pageCount, setPageCount] = useState(0);
   const [isLoading, setIsLoading] = useState<Boolean>(false);
 
