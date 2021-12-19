@@ -19,15 +19,17 @@ const styles = StyleSheet.create({
 const ErrorMessage = ({
   cryptoListError,
   partialDetailsError,
+  volumeDataError,
 }: {
-  cryptoListError: string;
-  partialDetailsError: string;
+  cryptoListError?: string;
+  partialDetailsError?: string;
+  volumeDataError?: string;
 }) => {
   return (
     <View style={styles.errorView}>
       <Text>
         <Text style={styles.errorWord}>Error:</Text>{" "}
-        {cryptoListError || partialDetailsError}.
+        {cryptoListError || partialDetailsError || volumeDataError}.
       </Text>
       <Text>{"\n"}Please check your Internet connection and try again.</Text>
     </View>

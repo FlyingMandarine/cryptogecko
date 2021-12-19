@@ -1,18 +1,18 @@
 import { StyleSheet } from "react-native";
 
-import About from "./About";
 import { Text, View } from "../components/Themed";
+import TrendingVolume from "./TrendingVolume";
 
 export default function TabTwoScreen() {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>CryptoGecko</Text>
+      <Text style={styles.title}>Top 100 Coins by Trading Volume</Text>
       <View
         style={styles.separator}
         lightColor="#eee"
         darkColor="rgba(255,255,255,0.1)"
       />
-      <About path="/screens/TabTwoScreen.tsx" />
+      <TrendingVolume />
     </View>
   );
 }
