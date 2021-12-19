@@ -22,6 +22,8 @@ const useSelectedData = (
 
     let newData: CryptoData[] = [];
 
+    // If quotation marks are found at either end of the whitespace-trimmed search,
+    // then look for an exact match.
     if (
       debouncedSearchQuery[0] === '"' &&
       debouncedSearchQuery[debouncedSearchQuery.length - 1] === '"'
@@ -38,6 +40,7 @@ const useSelectedData = (
       if (entry) {
         newData.push(entry);
       }
+      // Else, just look for any strings that contain the searched query as a substring.
     } else {
       newData = cryptoList.filter((entry) =>
         entry[searchMode]

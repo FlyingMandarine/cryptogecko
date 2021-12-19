@@ -1,6 +1,6 @@
 import React from "react";
-// import { Text, View } from "react-native";
 import { render } from "@testing-library/react-native";
+
 import CryptoListContainer from "../../../components/CryptoList/index";
 
 const mockData = [
@@ -44,6 +44,15 @@ const mockData = [
     symbol: "balhalf",
   },
 ];
+
+/* NOTE: I couldn't manage to find a way to make Jest work by the time the project was due.
+   I started this project with the Expo TypeScript template, and it came with the React Navigation library for routing purposes
+   (I usually use React Router Native); unfortunately, the ScrollView on most of the components just wouldn't get recognized by Jest.
+   I tried to mock it if only so I could access its contents, but wasn't able to.
+
+   Short of finding a fix, the only way I could find of solving the issue was to rebuild the entire project
+   with React Router Native; unfortunately, I run out of time to do that.
+*/
 
 describe("CryptoListContainer", () => {
   it("displays data successfully after fetching it", () => {

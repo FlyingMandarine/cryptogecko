@@ -1,9 +1,11 @@
+// Crypto entries with basic information.
 export interface CryptoData {
   id: string;
   name: string;
   symbol: string;
 }
 
+// Crypto entries with detailed information.
 export interface CryptoDetails {
   id: string;
   symbol: string;

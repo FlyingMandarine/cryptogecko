@@ -1,13 +1,11 @@
 import React from "react";
-import { FlatList, ListRenderItem, StyleSheet, View } from "react-native";
+import { FlatList, ListRenderItem } from "react-native";
 import { Button } from "react-native-paper";
 
 import { CryptoDetails } from "../../types/cryptoTypes";
 import useVolumeData from "../../hooks/useVolumeData";
 import SingleCryptoCard from "../CryptoList/SingleCryptoCard";
 import ErrorMessage from "../ErrorMessage";
-
-import styles from "../../constants/Styles";
 
 const renderItem: ListRenderItem<CryptoDetails> = ({ item }) => (
   <SingleCryptoCard item={item} />

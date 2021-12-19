@@ -6,7 +6,7 @@ const useVolumeData = () => {
   const [volumeDataError, setVolumeDataError] = useState<string>("");
 
   const fetchData = async () => {
-    // Uncomment the following line and comment out the one after to see error message
+    // Uncomment the following line and comment out the one after to see an error message.
     // const url = "https://www.example.com/api/v3/coins/markets?vs_currency=usd&order=volume_desc&per_page=100&page=1&sparkline=false";
     const url =
       "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=volume_desc&per_page=100&page=1&sparkline=false";

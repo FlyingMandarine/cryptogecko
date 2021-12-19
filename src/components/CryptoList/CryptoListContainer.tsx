@@ -57,6 +57,8 @@ const CryptoListContainer = ({
         renderItem={renderItem}
         keyExtractor={(item) => item.id}
       />
+      {/* There are ten cryptos per page, therefore the maximum number of pages is the total
+      number of cryptos divided by 10 (minus 1 as we start on page 1 and not on page 0). */}
       <PageSelection
         pageCount={pageCount}
         triggerPageChange={triggerPageChange}

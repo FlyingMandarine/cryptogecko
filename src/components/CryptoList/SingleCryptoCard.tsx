@@ -7,6 +7,8 @@ const SingleCryptoCard = ({ item }: { item: CryptoDetails }) => {
   let formattedMarketCap = "0";
   let formattedPrice = "0";
 
+  // For some reason, .toLocaleString() doesn't work, so I have to resort to good old regex.
+  // A lot of cryptos show up at $0 because their price is incredibly low.
   if (item.market_cap !== null) {
     formattedMarketCap = item.market_cap
       .toString()
@@ -57,6 +59,7 @@ const SingleCryptoCard = ({ item }: { item: CryptoDetails }) => {
                   : "green",
             }}
           >
+            {/* Using ((price + Number.EPSILON) * 1000) / 1000 to round up/down to two decimal points.  */}
             {item.price_change_percentage_1h_in_currency
               ? Math.round(
                   (item.price_change_percentage_1h_in_currency +

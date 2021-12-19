@@ -13,24 +13,35 @@ import ErrorMessage from "../ErrorMessage";
 
 const CryptoList = () => {
   const [isSwitchOn, setIsSwitchOn] = useState(false);
+
+  // searchQuery is used to update the search field while debouncedSearchQuery is used to fetch data
+  // after half a second to prevent having to fetch it every time the user presses a key.
   const [searchQuery, setSearchQuery] = useState("");
   const [debouncedSearchQuery] = useDebounce(searchQuery.trim(), 500);
+
   const [pageCount, setPageCount] = useState(0);
   const [isLoading, setIsLoading] = useState<Boolean>(false);
 
-  const [partialData, setPartialData] = useState<CryptoData[] | undefined>();
-
+  // The entire list of cryptos, fetched only upon starting the app.
   const { cryptoList, cryptoListError } = useCryptoList();
+
+  // The entries from cryptoList, minus the ones that have been filtered out if a search was done.
   const { selectedData, loading } = useSelectedData(
     cryptoList,
     isSwitchOn,
     debouncedSearchQuery
   );
+
+  // The paginated cryptos (max 10 entries) extracted from selectedData.
+  const [partialData, setPartialData] = useState<CryptoData[] | undefined>();
+
+  // The detailed info (including percentage changes) for the cryptos on the current page (partialData).
   const { partialDetails, partialDetailsError } =
     usePartialDetails(partialData);
 
   const onChangeSearch = (query: string) => setSearchQuery(query);
 
+  // Change the paginated entries if the data changes or the user goes to another page.
   useEffect(() => {
     const newPageData = selectedData?.slice(
       pageCount * 10,
@@ -44,6 +55,7 @@ const CryptoList = () => {
     }
   }, [cryptoList, pageCount, selectedData]);
 
+  // If the data changes, go back to page 1.
   useEffect(() => {
     setPageCount(0);
   }, [selectedData]);

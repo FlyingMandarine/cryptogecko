@@ -1,6 +1,6 @@
 # CryptoGecko
 
-![CryptoGecko's main page](sg-frontend/src/images/sg-github.JPG?raw=true "CryptoGecko")
+![CryptoGecko's main page](src/assets/images/CryptoGecko-screenshot.jpeg?raw=true "CryptoGecko")
 
 ## Table of Content
 
