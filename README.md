@@ -9,7 +9,7 @@
 - [What is CryptoGecko](#what-is-cryptogecko)
 - [Installing CryptoGecko](#installing-cryptogecko)
 - [Running CryptoGecko](#running-cryptogecko)
-- [What Worked, and What Didn't](#what-worked-and-what-didn't)
+- [What Worked, and What Didn't](#what-worked-and-what-didnt)
 - [Contributions](#contributions)
 - [License](#license)
 
