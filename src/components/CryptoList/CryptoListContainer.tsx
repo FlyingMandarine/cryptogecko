@@ -1,35 +1,12 @@
 import React from "react";
-import { FlatList, ListRenderItem, StyleSheet, Text, View } from "react-native";
+import { FlatList, ListRenderItem, Text, View } from "react-native";
 import { Searchbar, Switch } from "react-native-paper";
 
 import { CryptoData, CryptoDetails } from "../../types/cryptoTypes";
 import PageSelection from "./PageSelection";
 import SingleCryptoCard from "./SingleCryptoCard";
 
-const styles = StyleSheet.create({
-  container: {
-    //backgroundColor: "#e1e4e8"
-  },
-  searchBar: {
-    width: "90%",
-    marginLeft: "5%",
-  },
-  switchView: {
-    flexDirection: "row",
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#e1e4e8",
-  },
-  switch: {
-    marginHorizontal: 5,
-  },
-  separator: {
-    marginVertical: 10,
-    borderColor: "#e1e4e8",
-    borderStyle: "solid",
-    borderWidth: 5,
-  },
-});
+import styles from "../../constants/Styles";
 
 const ItemSeparator = () => <View style={styles.separator} />;
 
@@ -57,7 +34,7 @@ const CryptoListContainer = ({
   triggerPageChange: Function;
 }) => {
   return (
-    <View style={styles.container}>
+    <View style={styles.cryptoListContainer}>
       <Searchbar
         autoComplete={""}
         placeholder="Search"

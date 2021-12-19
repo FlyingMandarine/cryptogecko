@@ -6,14 +6,7 @@ import useVolumeData from "../../hooks/useVolumeData";
 import SingleTrendingCard from "./SingleTrendingCard";
 import ErrorMessage from "../ErrorMessage";
 
-const styles = StyleSheet.create({
-  separator: {
-    marginVertical: 10,
-    borderColor: "#e1e4e8",
-    borderStyle: "solid",
-    borderWidth: 5,
-  },
-});
+import styles from "../../constants/Styles";
 
 const ItemSeparator = () => <View style={styles.separator} />;
 

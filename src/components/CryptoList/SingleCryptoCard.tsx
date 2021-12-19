@@ -1,28 +1,7 @@
 import React from "react";
-import { Image, StyleSheet, Text, View } from "react-native";
+import { Image, Text, View } from "react-native";
 import { CryptoDetails } from "../../types/cryptoTypes";
-
-const styles = StyleSheet.create({
-  cardTop: {
-    flexDirection: "row",
-    alignItems: "center",
-  },
-  cardCover: {
-    width: 40,
-    height: 40,
-    marginHorizontal: 20,
-    backgroundColor: "white",
-  },
-  cardTitleView: {},
-  cardBottom: {
-    flexDirection: "row",
-    justifyContent: "space-around",
-    marginTop: 10,
-  },
-  bottomContainers: {
-    alignItems: "center",
-  },
-});
+import styles from "../../constants/Styles";
 
 const SingleCryptoCard = ({ item }: { item: CryptoDetails }) => {
   let formattedMarketCap = "0";
@@ -56,18 +35,18 @@ const SingleCryptoCard = ({ item }: { item: CryptoDetails }) => {
       </View>
 
       <View style={styles.cardBottom}>
-        <View style={styles.bottomContainers}>
+        <View style={styles.cardBottomContainers}>
           <Text>Price</Text>
           <Text style={{ fontWeight: "bold" }}>${formattedPrice}</Text>
         </View>
-        <View style={styles.bottomContainers}>
+        <View style={styles.cardBottomContainers}>
           <Text>Market cap</Text>
           <Text style={{ fontWeight: "bold" }}>${formattedMarketCap}</Text>
         </View>
       </View>
 
       <View style={styles.cardBottom}>
-        <View style={styles.bottomContainers}>
+        <View style={styles.cardBottomContainers}>
           <Text>1h</Text>
           <Text
             style={{
@@ -88,7 +67,7 @@ const SingleCryptoCard = ({ item }: { item: CryptoDetails }) => {
             %
           </Text>
         </View>
-        <View style={styles.bottomContainers}>
+        <View style={styles.cardBottomContainers}>
           <Text>24h</Text>
           <Text
             style={{
@@ -104,7 +83,7 @@ const SingleCryptoCard = ({ item }: { item: CryptoDetails }) => {
             %
           </Text>
         </View>
-        <View style={styles.bottomContainers}>
+        <View style={styles.cardBottomContainers}>
           <Text>7d</Text>
           <Text
             style={{
