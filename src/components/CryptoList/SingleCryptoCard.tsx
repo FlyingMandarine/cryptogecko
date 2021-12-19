@@ -1,6 +1,6 @@
 import React from "react";
 import { Image, StyleSheet, Text, View } from "react-native";
-import { CryptoDetails } from "../../cryptoTypes";
+import { CryptoDetails } from "../../types/cryptoTypes";
 
 const styles = StyleSheet.create({
   cardTop: {
@@ -25,16 +25,22 @@ const styles = StyleSheet.create({
 });
 
 const SingleCryptoCard = ({ item }: { item: CryptoDetails }) => {
-  let formattedMarketCap = '0';
-  let formattedPrice = '0';
+  let formattedMarketCap = "0";
+  let formattedPrice = "0";
 
   if (item.market_cap !== null) {
-    formattedMarketCap = item.market_cap.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    formattedMarketCap = item.market_cap
+      .toString()
+      .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   }
 
   if (item.current_price !== null) {
-    const roundedPrice: string = (Math.round(item.current_price * 100)/100).toFixed(2);
-    formattedPrice = roundedPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    const roundedPrice: string = (
+      Math.round(item.current_price * 100) / 100
+    ).toFixed(2);
+    formattedPrice = roundedPrice
+      .toString()
+      .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   }
 
   return (

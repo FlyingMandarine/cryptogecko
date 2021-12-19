@@ -3,7 +3,7 @@ import { FlatList, ListRenderItem, StyleSheet, Text, View } from "react-native";
 import { Button, Searchbar, Switch } from "react-native-paper";
 import { useDebounce } from "use-debounce";
 
-import { CryptoData, CryptoDetails } from "../../cryptoTypes";
+import { CryptoData, CryptoDetails } from "../../types/cryptoTypes";
 import PageSelection from "./PageSelection";
 
 import useCryptoList from "../../hooks/useCryptoList";

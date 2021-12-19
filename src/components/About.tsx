@@ -2,7 +2,7 @@ import * as WebBrowser from "expo-web-browser";
 import { StyleSheet, TouchableOpacity } from "react-native";
 
 import Colors from "../constants/Colors";
-import { Text, View } from "./Themed";
+import { Text, View } from "../components/Themed";
 
 export default function About({ path }: { path: string }) {
   return (

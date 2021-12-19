@@ -8,13 +8,14 @@
     "ios": "expo start --ios",
     "web": "expo start --web",
     "eject": "expo eject",
-    "test": "jest --watchAll",
+    "test": "jest",
     "lint": "eslint . --no-error-on-unmatched-pattern",
     "prettier-check": "npx prettier --check .",
     "prettier-write": "npx prettier --write ."
   },
   "jest": {
-    "preset": "jest-expo"
+    "preset": "jest-expo",
+    "setupFilesAfterEnv": ["<rootDir>/setupTests.js"]
   },
   "dependencies": {
     "@expo/vector-icons": "^12.0.0",
@@ -42,6 +43,8 @@
   "devDependencies": {
     "@babel/core": "^7.12.9",
     "@babel/eslint-parser": "^7.16.5",
+    "@testing-library/jest-native": "^4.0.4",
+    "@testing-library/react-native": "^9.0.0",
     "@types/node": "^17.0.0",
     "@types/react": "~17.0.21",
     "@types/react-native": "~0.64.12",
@@ -51,7 +54,7 @@
     "eslint-plugin-react": "^7.27.1",
     "jest": "^26.6.3",
     "jest-expo": "~44.0.1",
-    "react-test-renderer": "17.0.1",
+    "react-test-renderer": "^17.0.1",
     "tslib": "^2.3.1",
     "typescript": "~4.3.5"
   },

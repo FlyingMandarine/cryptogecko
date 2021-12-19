@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { CryptoData, CryptoDetails } from "../cryptoTypes";
+import { CryptoData, CryptoDetails } from "../types/cryptoTypes";
 
 const usePartialDetails = (partialData: CryptoData[] | undefined) => {
   const [partialDetails, setPartialDetails] = useState<

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { CryptoData } from "../cryptoTypes";
+import { CryptoData } from "../types/cryptoTypes";
 
 const useSelectedData = (
   cryptoList: CryptoData[] | undefined,
