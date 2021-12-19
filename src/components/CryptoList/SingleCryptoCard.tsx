@@ -48,7 +48,9 @@ const SingleCryptoCard = ({ item }: { item: CryptoDetails }) => {
       <View style={styles.cardTop}>
         <Image source={{ uri: item.image }} style={styles.cardCover} />
         <View>
-          <Text style={{ fontWeight: "bold" }}>{item.name}</Text>
+          <Text style={{ fontWeight: "bold" }} testID="cardName">
+            {item.name}
+          </Text>
           <Text>{item.symbol.toUpperCase()}</Text>
         </View>
       </View>

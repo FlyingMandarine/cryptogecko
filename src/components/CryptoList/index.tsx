@@ -10,8 +10,16 @@ import useCryptoList from "../../hooks/useCryptoList";
 import useSelectedData from "../../hooks/useSelectedData";
 import usePartialDetails from "../../hooks/usePartialDetails";
 import SingleCryptoCard from "./SingleCryptoCard";
+import ErrorMessage from "../ErrorMessage";
 
 const styles = StyleSheet.create({
+  container: {
+    //backgroundColor: "#e1e4e8"
+  },
+  searchBar: {
+    width: "90%",
+    marginLeft: "5%",
+  },
   separator: {
     marginVertical: 10,
     borderColor: "#e1e4e8",
@@ -22,11 +30,71 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
+    backgroundColor: "#e1e4e8",
   },
   switch: {
     marginHorizontal: 5,
   },
 });
+
+const ItemSeparator = () => <View style={styles.separator} />;
+
+const renderItem: ListRenderItem<CryptoDetails> = ({ item }) => (
+  <SingleCryptoCard item={item} />
+);
+
+const CryptoListContainer = ({
+  searchQuery,
+  isSwitchOn,
+  pageCount,
+  selectedData,
+  partialDetails,
+  onChangeSearch,
+  onToggleSwitch,
+  triggerPageChange,
+}: {
+  searchQuery: string;
+  isSwitchOn: boolean | undefined;
+  pageCount: number;
+  selectedData: CryptoData[];
+  partialDetails: CryptoDetails[];
+  onChangeSearch: (query: string) => void;
+  onToggleSwitch: ((value: boolean) => void | Promise<void>) & Function;
+  triggerPageChange: Function;
+}) => {
+  return (
+    <View style={styles.container}>
+      <Searchbar
+        autoComplete={""}
+        placeholder="Search"
+        onChangeText={onChangeSearch}
+        value={searchQuery}
+        style={styles.searchBar}
+      />
+      <View style={styles.switchView}>
+        <Text>Search by Name</Text>
+        <Switch
+          value={isSwitchOn}
+          onValueChange={onToggleSwitch}
+          color="grey"
+          style={styles.switch}
+        />
+        <Text>Search by Symbol</Text>
+      </View>
+      <FlatList
+        data={partialDetails}
+        renderItem={renderItem}
+        keyExtractor={(item) => item.id}
+        ItemSeparatorComponent={ItemSeparator}
+      />
+      <PageSelection
+        pageCount={pageCount}
+        triggerPageChange={triggerPageChange}
+        lastPage={selectedData && Math.ceil(selectedData.length / 10) - 1}
+      />
+    </View>
+  );
+};
 
 const CryptoList = () => {
   const [isSwitchOn, setIsSwitchOn] = useState(false);
@@ -37,13 +105,14 @@ const CryptoList = () => {
 
   const [partialData, setPartialData] = useState<CryptoData[] | undefined>();
 
-  const { cryptoList } = useCryptoList();
+  const { cryptoList, cryptoListError } = useCryptoList();
   const { selectedData, loading } = useSelectedData(
     cryptoList,
     isSwitchOn,
     debouncedSearchQuery
   );
-  const { partialDetails } = usePartialDetails(partialData);
+  const { partialDetails, partialDetailsError } =
+    usePartialDetails(partialData);
 
   const onChangeSearch = (query: string) => setSearchQuery(query);
 
@@ -64,23 +133,18 @@ const CryptoList = () => {
     setPageCount(0);
   }, [selectedData]);
 
+  if (cryptoListError || partialDetailsError) {
+    return (
+      <ErrorMessage
+        cryptoListError={cryptoListError}
+        partialDetailsError={partialDetailsError}
+      />
+    );
+  }
+
   if (!partialData || isLoading === true || loading === true) {
     return <Button loading>Loading...</Button>;
   }
-
-  // if (partialDetails) {
-  //   console.log(typeof partialDetails[0].market_cap);
-
-  //   console.log('hello is', parseInt( '1000000' ).toLocaleString());
-
-  //   console.log('miteux is', Number(partialDetails[0].market_cap.toLocaleString("fr-FR")));
-  // }
-
-  const renderItem: ListRenderItem<CryptoDetails> = ({ item }) => (
-    <SingleCryptoCard item={item} />
-  );
-
-  const ItemSeparator = () => <View style={styles.separator} />;
 
   const triggerPageChange: Function = (page: string) => {
     // console.log("Loading...");
@@ -111,37 +175,22 @@ const CryptoList = () => {
     setIsSwitchOn(!isSwitchOn);
   };
 
-  return (
-    <View>
-      <Searchbar
-        autoComplete={""}
-        placeholder="Search"
-        onChangeText={onChangeSearch}
-        value={searchQuery}
-      />
-      <View style={styles.switchView}>
-        <Text>Search by Name</Text>
-        <Switch
-          value={isSwitchOn}
-          onValueChange={onToggleSwitch}
-          color="grey"
-          style={styles.switch}
-        />
-        <Text>Search by Symbol</Text>
-      </View>
-      <FlatList
-        data={partialDetails}
-        renderItem={renderItem}
-        keyExtractor={(item) => item.id}
-        ItemSeparatorComponent={ItemSeparator}
-      />
-      <PageSelection
+  if (selectedData && partialDetails) {
+    return (
+      <CryptoListContainer
+        searchQuery={searchQuery}
+        isSwitchOn={isSwitchOn}
         pageCount={pageCount}
+        selectedData={selectedData}
+        partialDetails={partialDetails}
+        onChangeSearch={onChangeSearch}
+        onToggleSwitch={onToggleSwitch}
         triggerPageChange={triggerPageChange}
-        lastPage={selectedData && Math.ceil(selectedData.length / 10) - 1}
       />
-    </View>
-  );
+    );
+  } else {
+    return null;
+  }
 };
 
 export default CryptoList;
