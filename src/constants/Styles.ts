@@ -3,26 +3,33 @@ import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
   cryptoListContainer: {
-    //backgroundColor: "#e1e4e8"
+    height: "100%",
+  },
+  searchBarContainer: {
+    backgroundColor: "#e1e4e8",
   },
   searchBar: {
     width: "90%",
     marginLeft: "5%",
+    marginTop: 10,
   },
   switchView: {
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "#e1e4e8",
+    marginTop: 5,
   },
   switch: {
     marginHorizontal: 5,
   },
-  separator: {
-    marginVertical: 10,
-    borderColor: "#e1e4e8",
-    borderStyle: "solid",
-    borderWidth: 5,
+  cardContainer: {
+    marginVertical: 5,
+    marginHorizontal: 15,
+    paddingVertical: 10,
+    backgroundColor: "white",
+    borderRadius: 5,
+    elevation: 5,
   },
   cardTop: {
     flexDirection: "row",

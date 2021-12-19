@@ -6,7 +6,7 @@ const useCryptoList = () => {
   const [cryptoListError, setCryptoListError] = useState<string>("");
 
   const fetchData = async () => {
-    // Uncomment the next line and comment out the one after to see error message
+    // Uncomment the following line and comment out the one after to see error message
     // await fetch("https://www.example.com/api/v3/coins/list")
     await fetch("https://api.coingecko.com/api/v3/coins/list")
       .then((response) => {

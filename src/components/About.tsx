@@ -7,20 +7,21 @@ import { Text, View } from "../components/Themed";
 export default function About({ path }: { path: string }) {
   return (
     <View>
-      <View style={styles.getStartedContainer}>
+      <View style={styles.aboutContainer}>
         <Text
-          style={styles.getStartedText}
+          style={styles.aboutText}
           lightColor="rgba(0,0,0,0.8)"
           darkColor="rgba(255,255,255,0.8)"
         >
           A mobile app to search and filter crypto info provided by the
-          CoinGecko API. Made with React Native and TypeScript.
+          CoinGecko API.{"\n"}
+          {"\n"}Made with React Native and TypeScript.
         </Text>
       </View>
 
-      <View style={styles.helpContainer}>
-        <TouchableOpacity onPress={handleLinkPress} style={styles.helpLink}>
-          <Text style={styles.helpLinkText} lightColor={Colors.light.tint}>
+      <View style={styles.githubContainer}>
+        <TouchableOpacity onPress={handleLinkPress} style={styles.githubLink}>
+          <Text style={styles.githubText} lightColor={Colors.light.tint}>
             GitHub
           </Text>
         </TouchableOpacity>
@@ -34,31 +35,24 @@ function handleLinkPress() {
 }
 
 const styles = StyleSheet.create({
-  getStartedContainer: {
+  aboutContainer: {
     alignItems: "center",
     marginHorizontal: 50,
   },
-  homeScreenFilename: {
-    marginVertical: 7,
-  },
-  codeHighlightContainer: {
-    borderRadius: 3,
-    paddingHorizontal: 4,
-  },
-  getStartedText: {
+  aboutText: {
     fontSize: 17,
     lineHeight: 24,
     textAlign: "center",
   },
-  helpContainer: {
+  githubContainer: {
     marginTop: 15,
     marginHorizontal: 20,
     alignItems: "center",
   },
-  helpLink: {
+  githubLink: {
     paddingVertical: 15,
   },
-  helpLinkText: {
+  githubText: {
     textAlign: "center",
   },
 });

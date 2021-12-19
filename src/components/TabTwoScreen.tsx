@@ -6,12 +6,9 @@ import TrendingVolume from "./TrendingVolume";
 export default function TabTwoScreen() {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Top 100 Coins by Trading Volume</Text>
-      <View
-        style={styles.separator}
-        lightColor="#eee"
-        darkColor="rgba(255,255,255,0.1)"
-      />
+      <View style={styles.titleView}>
+        <Text style={styles.titleText}>Top 100 Coins by Trading Volume</Text>
+      </View>
       <TrendingVolume />
     </View>
   );
@@ -20,16 +17,15 @@ export default function TabTwoScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: "center",
     justifyContent: "center",
+    backgroundColor: "#e1e4e8",
   },
-  title: {
+  titleView: {
+    paddingVertical: 10,
+  },
+  titleText: {
     fontSize: 20,
+    alignSelf: "center",
     fontWeight: "bold",
-  },
-  separator: {
-    marginVertical: 30,
-    height: 1,
-    width: "80%",
   },
 });

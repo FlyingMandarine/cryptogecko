@@ -23,7 +23,7 @@ const SingleCryptoCard = ({ item }: { item: CryptoDetails }) => {
   }
 
   return (
-    <View key={item.id}>
+    <View key={item.id} style={styles.cardContainer}>
       <View style={styles.cardTop}>
         <Image source={{ uri: item.image }} style={styles.cardCover} />
         <View>

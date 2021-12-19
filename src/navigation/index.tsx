@@ -56,7 +56,7 @@ function RootNavigator() {
         options={{ headerShown: false }}
       />
       <Stack.Group screenOptions={{ presentation: "modal" }}>
-        <Stack.Screen name="Modal" component={ModalScreen} />
+        <Stack.Screen name="About" component={ModalScreen} />
       </Stack.Group>
     </Stack.Navigator>
   );
@@ -86,7 +86,7 @@ function BottomTabNavigator() {
           tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
           headerRight: () => (
             <Pressable
-              onPress={() => navigation.navigate("Modal")}
+              onPress={() => navigation.navigate("About")}
               style={({ pressed }) => ({
                 opacity: pressed ? 0.5 : 1,
               })}
@@ -105,7 +105,7 @@ function BottomTabNavigator() {
         name="TabTwo"
         component={TabTwoScreen}
         options={{
-          title: "Tab Two",
+          title: "Top 100 Coins",
           tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
         }}
       />

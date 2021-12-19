@@ -8,8 +8,6 @@ import SingleCryptoCard from "./SingleCryptoCard";
 
 import styles from "../../constants/Styles";
 
-const ItemSeparator = () => <View style={styles.separator} />;
-
 const renderItem: ListRenderItem<CryptoDetails> = ({ item }) => (
   <SingleCryptoCard item={item} />
 );
@@ -35,13 +33,15 @@ const CryptoListContainer = ({
 }) => {
   return (
     <View style={styles.cryptoListContainer}>
-      <Searchbar
-        autoComplete={""}
-        placeholder="Search"
-        onChangeText={onChangeSearch}
-        value={searchQuery}
-        style={styles.searchBar}
-      />
+      <View style={styles.searchBarContainer}>
+        <Searchbar
+          autoComplete={""}
+          placeholder="Search"
+          onChangeText={onChangeSearch}
+          value={searchQuery}
+          style={styles.searchBar}
+        />
+      </View>
       <View style={styles.switchView}>
         <Text>Search by Name</Text>
         <Switch
@@ -56,7 +56,6 @@ const CryptoListContainer = ({
         data={partialDetails}
         renderItem={renderItem}
         keyExtractor={(item) => item.id}
-        ItemSeparatorComponent={ItemSeparator}
       />
       <PageSelection
         pageCount={pageCount}

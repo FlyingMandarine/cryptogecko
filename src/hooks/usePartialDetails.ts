@@ -15,7 +15,7 @@ const usePartialDetails = (partialData: CryptoData[] | undefined) => {
 
     const partialDataIds = partialData?.map((entry) => entry.id);
 
-    // Uncomment the next line and comment out the one after to see error message
+    // Uncomment the following line and comment out the one after to see error message
     // const url = `https://www.example.com/api/v3/coins/markets?vs_currency=usd&ids=${partialDataIds}&order=market_cap_desc&per_page=100&page=1&sparkline=false&price_change_percentage=1h%2C24h%2C7d`;
     const url = `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=${partialDataIds}&order=market_cap_desc&per_page=100&page=1&sparkline=false&price_change_percentage=1h%2C24h%2C7d`;
 

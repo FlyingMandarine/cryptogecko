@@ -56,7 +56,7 @@ npm start
 
 CryptoGecko is a small project made on a 3-day deadline. Here is what worked and what didn't:
 
-:x: Automated testing: I couldn't manage to find a way to make Jest work by the time the project was due. This was the first time I used the React Navigation library for routing purposes (I usually use React Router Native), and the ScrollView on most of the components just wouldn't get recognized by Jest. I tried to mock it if only so I could access its contents, but wasn't able to. Short of finding a fix, the only way I could find of solving the issue was to rebuild the entire project with React Router Native; unfortunately, I run out of time to do that.
+:x: Automated testing: I couldn't manage to find a way to make Jest work by the time the project was due. I started this project with the Expo TypeScript template, and it came with the React Navigation library for routing purposes (I usually use React Router Native); unfortunately, the ScrollView on most of the components just wouldn't get recognized by Jest. I tried to mock it if only so I could access its contents, but wasn't able to. Short of finding a fix, the only way I could find of solving the issue was to rebuild the entire project with React Router Native; unfortunately, I run out of time to do that.
 
 :white_check_mark: Pagination: I had already dealt with infinite-scrolling, cursor-based pagination with GraphQL and Apollo, but had never coded a regular, button-activated pagination (talk about running before learning to walk!). I couldn't find a suitable library for React Native that wasn't chock-full of functionalities I wouldn't use, so I had to make my own, hopefully bug-free.
 

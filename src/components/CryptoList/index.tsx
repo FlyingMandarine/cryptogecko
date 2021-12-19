@@ -58,11 +58,14 @@ const CryptoList = () => {
   }
 
   if (!partialData || isLoading === true || loading === true) {
-    return <Button loading>Loading...</Button>;
+    return (
+      <Button loading style={{ height: "100%", justifyContent: "center" }}>
+        Loading...
+      </Button>
+    );
   }
 
   const triggerPageChange: Function = (page: string) => {
-    // console.log("Loading...");
     setIsLoading(true);
     const newPage = () => {
       switch (page) {
