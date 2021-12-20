@@ -28,7 +28,11 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     backgroundColor: "white",
     borderRadius: 5,
-    elevation: 5,
+    elevation: 10,
+    shadowColor: "black",
+    shadowOffset: { width: 1, height: 1 },
+    shadowOpacity: 1,
+    shadowRadius: 1,
   },
   cardTop: {
     flexDirection: "row",

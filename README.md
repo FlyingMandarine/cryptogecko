@@ -19,13 +19,11 @@ _A project made with React Native and TypeScript._
 
 A simple mobile app to search and filter cryptocurrency information provided by the CoinGecko API.
 
-It is made up of three tabs:
+It is made up of two tabs:
 
 -The Coins tab, to look through the 10.000+ cryptocurrencies in existence, with information regarding their logo, name, symbol, current price, market cap, and percentage changes (1h/24h/7d).
 
 -A tab to view the Top 100 Coins by Trading Volume; pretty self-explanatory.
-
--Finally, a tab to view Global Market information.
 
 You can refine your searches in the Coins tab by filtering by name or by symbol; you can also look for exact matches by surrounding your search with quotations marks like so: "Bitcoin". Searches are case-insensitive.
 

@@ -22,7 +22,7 @@ const PageSelection = ({
     <View style={styles.buttonsContainer}>
       {pageCount < 1 ? (
         <>
-          <Button mode="contained" disabled>
+          <Button mode="contained" disabled compact>
             <Text>&lt;&lt;</Text>
           </Button>
           <Button mode="contained" disabled>
@@ -35,6 +35,7 @@ const PageSelection = ({
             mode="contained"
             onPress={() => triggerPageChange("first")}
             color="mediumseagreen"
+            compact
           >
             <Text>&lt;&lt;</Text>
           </Button>
@@ -57,7 +58,7 @@ const PageSelection = ({
           <Button mode="contained" disabled>
             <Text>&gt;</Text>
           </Button>
-          <Button mode="contained" disabled>
+          <Button mode="contained" disabled compact>
             <Text>&gt;&gt;</Text>
           </Button>
         </>
@@ -74,6 +75,7 @@ const PageSelection = ({
             mode="contained"
             onPress={() => triggerPageChange("last")}
             color="mediumseagreen"
+            compact
           >
             <Text>&gt;&gt;</Text>
           </Button>
