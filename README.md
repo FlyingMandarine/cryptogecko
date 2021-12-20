@@ -50,7 +50,7 @@ And that's it!
 npm start
 ```
 
-2. Then, to start the app, use your mobile phone (Expo Go on Android, the Camera app on iOS), an Android/iOS simulator on your computer, or the web app provided by Expo in your browser. Be aware that Expo's browser simulator has a few known issues. I've tested CryptoGecko on Expo Go for Android without any issues.
+2. Then, to start the app, use your mobile phone (Expo Go on Android, Expo and the Camera app on iOS), an Android/iOS simulator on your computer, or the web app provided by Expo in your browser. Be aware that Expo's browser simulator has a few known issues. I've tested CryptoGecko on Expo Go for Android without any issues.
 
 ## What Worked, and What Didn't
 
